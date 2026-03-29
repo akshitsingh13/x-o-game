@@ -37,6 +37,12 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.game-box:hover{
+    background-color: rgb(206, 206, 206);
+    cursor: pointer;
 }
 
 .display-title {
@@ -83,7 +89,7 @@ body {
 
 .o-points input,
 .x-points input,
-.winner-display input {
+.winner-input input{
     width: 24px;
     /* height: 24px; */
     font-size: 24px;
@@ -103,6 +109,20 @@ body {
 
 .winner-title {
     background-color: #4cf227;
+}
+
+.draw-display {
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    color: rgb(249, 44, 44);
+    padding: 2px 4px;
+    border-radius: 6px;
+    width: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .resetBtn {

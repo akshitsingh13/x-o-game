@@ -1,4 +1,11 @@
 const allBoxes = document.querySelectorAll(".game-box");
+const oPoints = document.querySelector(".o-display");
+const xPoints = document.querySelector(".x-display");
+const winnerDisplay = document.querySelector(".winner-display");
+const drawDisplay = document.querySelector(".draw-display");
+
+let oCounter = 0;
+let xCounter = 0;
 
 let player1 = "O";
 let player2 = "X";
@@ -46,12 +53,25 @@ function gameStart() {
                 winner.forEach(index => {
                     allBoxes[index].style.backgroundColor = "#4cf227";
                 });
-                setTimeout(() => alert(board[winner[0]] + " wins!"), 150);
+                // setTimeout(() => alert(board[winner[0]] + " wins!"), 150);
+                winnerDisplay.value = currentPlayer;
+                if (currentPlayer === player1) {
+                    oCounter++;
+                    oPoints.value = oCounter;
+                }
+                else {
+                    xCounter++;
+                    xPoints.value = xCounter;
+                }
+                setTimeout(() => resetOnType(), 1000);
                 return;
             }
 
             if (board.every(cell => cell !== "")) {
-                setTimeout(() => alert("Draw!!"), 150);
+                // setTimeout(() => alert("Draw!!"), 150);
+                drawDisplay.value = "Draw!";
+                setTimeout(() => resetOnType(), 1000);
+                setTimeout(() => drawDisplay.value = "",1000);
                 return;
             }
 
@@ -79,6 +99,24 @@ function resetBoard() {
     })
     board = ["", "", "", "", "", "", "", "", ""];
     currentPlayer = player1;
+}
+
+function resetOnType() {
+    allBoxes.forEach(box => {
+        box.style.backgroundImage = "";
+        box.style.backgroundColor = "";
+    })
+    board = ["", "", "", "", "", "", "", "", ""];
+    currentPlayer = player1;
+}
+
+function resetPoints() {
+    oPoints.value = "";
+    oCounter = 0;
+    xPoints.value = "";
+    xCounter = 0;
+    winnerDisplay.value = "";
+    resetOnType();
 }
 
 gameStart();
